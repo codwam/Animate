@@ -1,6 +1,14 @@
 source 'https://github.com/CocoaPods/Specs.git'
+
 platform :ios, '8.0'
+
 use_frameworks!
+
 inhibit_all_warnings!
-pod "Animate", :path => "../"
+
+target 'Animate_Example' do
+
+pod 'Animate', :path => "../"
+
+end
 

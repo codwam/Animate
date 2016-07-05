@@ -1,6 +1,6 @@
 {
   "name": "Animate",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "summary": "Convenience tool for the Pop animation framework written in Swift",
   "description": "Convenience tool for the Facebook Pop animation framework written in Swift",
   "homepage": "https://github.com/CodeEagle/Animate",
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "https://github.com/CodeEagle/Animate.git",
-    "tag": "0.1.5"
+    "tag": "0.1.6"
   },
   "social_media_url": "https://twitter.com/_SelfStudio",
   "platforms": {

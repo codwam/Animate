@@ -28,7 +28,7 @@ class TestTemplateViewController: UIViewController {
     
     lazy var segmentControl: UISegmentedControl! = {
         let seg = UISegmentedControl(items: ["Spring","Decay","Basic"])
-        seg.addTarget(self, action: "changeSegment:", forControlEvents: UIControlEvents.ValueChanged)
+        seg.addTarget(self, action: #selector(TestTemplateViewController.changeSegment(_:)), forControlEvents: UIControlEvents.ValueChanged)
         seg.tintColor = UIColor.whiteColor()
         seg.frame = CGRectMake(0, CGRectGetHeight(self.view.frame)-216-44, CGRectGetWidth(self.view.frame), 44)
         seg.selectedSegmentIndex = 0

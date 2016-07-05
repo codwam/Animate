@@ -52,7 +52,7 @@ extension ViewController {
             _tableView = UITableView(frame: self.view.bounds, style: UITableViewStyle.Plain)
             _tableView.delegate = self
             _tableView.dataSource = self
-            _tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0)
+            _tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
             _tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         }
         return _tableView
