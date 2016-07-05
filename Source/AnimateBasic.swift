@@ -23,7 +23,7 @@ public class AnimateBasic: BasicProperties{
     
     public override init() {
         super.init()
-        self.type = .Basic
+        self.type = .basic
         weak var wself: AnimateBasic! = self
         applyToBlock = {
             view in
@@ -46,7 +46,7 @@ extension AnimateBasic {
     
     - parameter view: to animate
     */
-    public func applyTo(view:AnyObject){
+    public func applyTo(_ view:AnyObject){
         
         if animates.count == 0 {
             self.playNext()
@@ -62,7 +62,7 @@ extension AnimateBasic {
                     basicAnim.timingFunction = timingFunction!
                 }
                 basicAnim.delegate = self
-                view.pop_addAnimation(basicAnim, forKey: basicAnim.property.name)
+                view.pop_add(basicAnim, forKey: basicAnim.property.name)
             }
         }
     }

@@ -48,7 +48,7 @@ public class AnimateSpring: BasicProperties{
     
     public override init() {
         super.init()
-        self.type = .Spring
+        self.type = .spring
         weak var wself: AnimateSpring! = self
         applyToBlock = {
             view in
@@ -62,7 +62,7 @@ public class AnimateSpring: BasicProperties{
 }
 
 extension AnimateSpring {
-    public func applyTo(target: AnyObject) {
+    public func applyTo(_ target: AnyObject) {
         if animates.count == 0 {
             self.playNext()
             return
@@ -90,7 +90,7 @@ extension AnimateSpring {
                     anim.velocity = velocity!
                 }
                 anim.delegate = self
-                target.pop_addAnimation(anim, forKey: anim.property.name)
+                target.pop_add(anim, forKey: anim.property.name)
             }
         }
     }

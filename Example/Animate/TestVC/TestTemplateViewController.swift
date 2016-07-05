@@ -12,30 +12,30 @@ class TestTemplateViewController: UIViewController {
     
     lazy var testView: UIView! = {
         var size = self.view.frame.size
-        let atestView = UIButton(frame: CGRectMake(size.width/2-50, 64 + 80, 100, 100))
-        atestView.tintColor = UIColor.redColor()
-        atestView.setTitle("Halo", forState: UIControlState.Normal)
-        atestView.layer.borderColor = UIColor.purpleColor().CGColor
+        let atestView = UIButton(frame: CGRect(x: size.width/2-50, y: 64 + 80, width: 100, height: 100))
+        atestView.tintColor = UIColor.red()
+        atestView.setTitle("Halo", for: UIControlState())
+        atestView.layer.borderColor = UIColor.purple().cgColor
         atestView.layer.borderWidth = 4.0
         atestView.layer.cornerRadius = 8
-        atestView.layer.shadowColor = UIColor.whiteColor().CGColor
-        atestView.layer.shadowOffset = CGSizeMake(2, 2)
+        atestView.layer.shadowColor = UIColor.white().cgColor
+        atestView.layer.shadowOffset = CGSize(width: 2, height: 2)
         atestView.layer.shadowOpacity = 0.3
         
-        atestView.backgroundColor = UIColor.orangeColor()
+        atestView.backgroundColor = UIColor.orange()
         return atestView
         }()
     
     lazy var segmentControl: UISegmentedControl! = {
         let seg = UISegmentedControl(items: ["Spring","Decay","Basic"])
-        seg.addTarget(self, action: #selector(TestTemplateViewController.changeSegment(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        seg.tintColor = UIColor.whiteColor()
-        seg.frame = CGRectMake(0, CGRectGetHeight(self.view.frame)-216-44, CGRectGetWidth(self.view.frame), 44)
+        seg.addTarget(self, action: #selector(TestTemplateViewController.changeSegment(_:)), for: UIControlEvents.valueChanged)
+        seg.tintColor = UIColor.white()
+        seg.frame = CGRect(x: 0, y: self.view.frame.height-216-44, width: self.view.frame.width, height: 44)
         seg.selectedSegmentIndex = 0
         return seg
     }()
     lazy var picker: UIPickerView! = {
-        let p = UIPickerView(frame: CGRectMake(0, CGRectGetHeight(self.view.frame)-216, CGRectGetWidth(self.view.frame), 216))
+        let p = UIPickerView(frame: CGRect(x: 0, y: self.view.frame.height-216, width: self.view.frame.width, height: 216))
         p.delegate = self
         p.dataSource = self
         return p
@@ -52,7 +52,7 @@ class TestTemplateViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.lightGrayColor()
+        self.view.backgroundColor = UIColor.lightGray()
         self.view.addSubview(self.segmentControl)
         self.view.addSubview(self.picker)
         self.view.addSubview(self.testView)
@@ -80,29 +80,29 @@ class TestTemplateViewController: UIViewController {
 
 extension TestTemplateViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return self.dataList.count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return Array(dataList.keys)[row]
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.changeProperty(row)
     }
 }
 
 extension TestTemplateViewController {
-    func changeSegment(sender:UISegmentedControl){
+    func changeSegment(_ sender:UISegmentedControl){
         
     }
     
-    func changeProperty(row:Int){
+    func changeProperty(_ row:Int){
         
     }
 }

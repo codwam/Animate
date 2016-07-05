@@ -13,20 +13,20 @@ class CAShapeLayerTestViewController: UIViewController {
     lazy var shape:CAShapeLayer! = {
         let size = self.view.bounds.size
         let sp = CAShapeLayer()
-        let path = UIBezierPath(roundedRect: CGRectMake(size.width/4, 100, size.width/2, size.width/2), cornerRadius: size.width/4)
-        sp.path = path.CGPath
+        let path = UIBezierPath(roundedRect: CGRect(x: size.width/4, y: 100, width: size.width/2, height: size.width/2), cornerRadius: size.width/4)
+        sp.path = path.cgPath
         sp.strokeStart = 0
-        sp.strokeColor = UIColor.orangeColor().CGColor
-        sp.fillColor = UIColor.clearColor().CGColor
+        sp.strokeColor = UIColor.orange().cgColor
+        sp.fillColor = UIColor.clear().cgColor
         return sp
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        self.view.backgroundColor = UIColor.groupTableViewBackground()
         // Do any additional setup after loading the view.
         
     }
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 //        animation()
     }

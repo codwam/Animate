@@ -20,16 +20,16 @@ class CALayerTestViewController: TestTemplateViewController {
             animateCombine()
         }
     }
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.testView.layer.spring { (make) -> Void in
-            make.backgroundColor = UIColor.greenColor()
-            make.bounds = CGRectMake(0, 0, 200, 200)
+        let _ = self.testView.layer.spring { (make) -> Void in
+            make.backgroundColor = UIColor.green()
+            make.bounds = CGRect(x: 0, y: 0, width: 200, height: 200)
             }.decay { (make) -> Void in
                 make.velocity(M_PI * 180, forProperty: kPOPLayerRotationY)
             }.basic { (make) -> Void in
-                make.bounds = CGRectMake(0, 0, 100, 100)
-                make.position = CGPointMake(self.view.bounds.size.width/2 - 50, 64 + 80);
+                make.bounds = CGRect(x: 0, y: 0, width: 100, height: 100)
+                make.position = CGPoint(x: self.view.bounds.size.width/2 - 50, y: 80)
             }
     }
     override func viewDidLoad() {
@@ -39,34 +39,34 @@ class CALayerTestViewController: TestTemplateViewController {
         let rx = Double(-30.0)*M_PI
         let ry = Double(80.0)*M_PI
         self.dataList = [
-            "BackgroundColor":UIColor.greenColor(),
-            "Bounds":NSValue(CGRect: CGRectMake(0, 0, 200, 200)),
+            "BackgroundColor":UIColor.green(),
+            "Bounds":NSValue(cgRect: CGRect(x: 0, y: 0, width: 200, height: 200)),
             "CornerRadius":50,
             "BorderWidth":6.0,
-            "BorderColor":UIColor.orangeColor(),
+            "BorderColor":UIColor.orange(),
             "Opacity":0.1,
-            "Position":NSValue(CGPoint:CGPointMake(200, 100)),
+            "Position":NSValue(cgPoint:CGPoint(x: 200, y: 100)),
             "PositionX":150,
             "PositionY":160,
             "Rotation":r,
             "RotationX":rx,
             "RotationY":ry,
             "ScaleX":2.0,
-            "ScaleXY":NSValue( CGSize:CGSizeMake(2.0, 2.0)),
+            "ScaleXY":NSValue( cgSize:CGSize(width: 2.0, height: 2.0)),
             "ScaleY":2.0,
-            "Size":NSValue(CGSize:CGSizeMake(200.0, 200.0)),
-            "SubscaleXY":NSValue(CGSize:CGSizeMake(5.0, 5.0)),
+            "Size":NSValue(cgSize:CGSize(width: 200.0, height: 200.0)),
+            "SubscaleXY":NSValue(cgSize:CGSize(width: 5.0, height: 5.0)),
             "SubtranslationX":120,
-            "SubtranslationXY":NSValue(CGSize:CGSizeMake(120.0, 100.0)),
+            "SubtranslationXY":NSValue(cgSize:CGSize(width: 120.0, height: 100.0)),
             "SubtranslationY":100,
             "SubtranslationZ":90,
             "TranslationX":80,
-            "TranslationXY":NSValue(CGSize:CGSizeMake(70, 90)),
+            "TranslationXY":NSValue(cgSize:CGSize(width: 70, height: 90)),
             "TranslationY":100,
             "TranslationZ":120,
             "ZPosition":300,
-            "ShadowColor":UIColor.cyanColor(),
-            "ShadowOffset":NSValue(CGSize:CGSizeMake(20, 10)),
+            "ShadowColor":UIColor.cyan(),
+            "ShadowOffset":NSValue(cgSize:CGSize(width: 20, height: 10)),
             "ShadowOpacity":0.7,
             "ShadowRadius":40
         ]
@@ -80,7 +80,7 @@ class CALayerTestViewController: TestTemplateViewController {
     
 
     func animateCombine(){
-        UIView.animateWithDuration(0.2, animations: { () -> Void in
+        UIView.animate(withDuration: 0.2, animations: { () -> Void in
             self.testView.alpha = 0
             }) { (b) -> Void in
                 if b {
@@ -111,11 +111,11 @@ class CALayerTestViewController: TestTemplateViewController {
 }
 extension CALayerTestViewController {
     
-    override func changeSegment(sender: UISegmentedControl) {
+    override func changeSegment(_ sender: UISegmentedControl) {
         currentStyle = sender.selectedSegmentIndex
     }
     
-    override func changeProperty(row: Int) {
+    override func changeProperty(_ row: Int) {
         currentProperty = row
     }
 }

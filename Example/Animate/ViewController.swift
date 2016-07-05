@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.title = "Animate"
     }
@@ -49,11 +49,11 @@ class ViewController: UIViewController {
 extension ViewController {
     var tableView: UITableView {
         if ??_tableView {
-            _tableView = UITableView(frame: self.view.bounds, style: UITableViewStyle.Plain)
+            _tableView = UITableView(frame: self.view.bounds, style: UITableViewStyle.plain)
             _tableView.delegate = self
             _tableView.dataSource = self
             _tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
-            _tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+            _tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         }
         return _tableView
     }
@@ -148,31 +148,31 @@ extension ViewController: UITableViewDataSource,UITableViewDelegate{
     
     //MARK: UITableViewDataSource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dataList.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell! = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) 
         if ??cell {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: "cell")
+            cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
         }
         configureCell(cell, forRowAtIndexPath: indexPath)
         return cell
     }
     
-    func configureCell(cell: UITableViewCell!, forRowAtIndexPath: NSIndexPath) {
-        cell.textLabel?.text = dataList[forRowAtIndexPath.row]
+    func configureCell(_ cell: UITableViewCell!, forRowAtIndexPath: IndexPath) {
+        cell.textLabel?.text = dataList[(forRowAtIndexPath as NSIndexPath).row]
     }
     
     //MARK: UITableViewDelegate
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let vc = self.vcs[indexPath.row]
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = self.vcs[(indexPath as NSIndexPath).row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

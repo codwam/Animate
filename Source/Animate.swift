@@ -83,7 +83,7 @@ import pop
 
 // MARK: - AnimateApplyProtocol
 public protocol AnimateApplyProtocol: class {
-    func applyTo(target: AnyObject)
+    func applyTo(_ target: AnyObject)
 }
 
 // MARK: - New Operator
@@ -113,23 +113,23 @@ public struct AnimateAssociatedKeys {
 
 // MARK: - AnimateType
 public enum AnimateType : Int {
-    case Spring
-    case Decay
-    case Basic
+    case spring
+    case decay
+    case basic
 }
 
 public enum AnimateLayer : Int {
-    case CALayer
-    case CAShapeLayer
-    case NSLayoutConstraint
-    case UIView
-    case UIScrollView
-    case UITableView
-    case UICollectionView
-    case UINavigationBar
-    case UIToolbar
-    case UITabBar
-    case UILabel
+    case caLayer
+    case caShapeLayer
+    case nsLayoutConstraint
+    case uiView
+    case uiScrollView
+    case uiTableView
+    case uiCollectionView
+    case uiNavigationBar
+    case uiToolbar
+    case uiTabBar
+    case uiLabel
 }
 public typealias NextAnimtionBlock = ()->Void
 
@@ -152,8 +152,8 @@ public extension CAMediaTimingFunction {
 }
 
 public extension POPPropertyAnimation {
-    func toGenericValue(value: AnyObject,_ type: AnimateType){
-        if type == .Decay {
+    func toGenericValue(_ value: AnyObject,_ type: AnimateType){
+        if type == .decay {
             let decay = self as! POPDecayAnimation
             decay.velocity = value
         }else{
@@ -165,7 +165,7 @@ public extension POPPropertyAnimation {
 
 public extension NSObject {
     
-    public func spring(@noescape closure: (make: AnimateSpring) -> Void) -> AnimateSpring {
+    public func spring(@noescape _ closure: (make: AnimateSpring) -> Void) -> AnimateSpring {
         let make = AnimateSpring()
         closure(make: make)
         var target:NSObject = self
@@ -173,7 +173,7 @@ public extension NSObject {
             target = obj.target
         }
         make.target = target
-        let op = NSBlockOperation()
+        let op = BlockOperation()
         op.addExecutionBlock { () -> Void in
             make.applyTo(target)
         }
@@ -181,7 +181,7 @@ public extension NSObject {
         return make
     }
     
-    public func decay(@noescape closure: (make: AnimateDecay) -> Void) -> AnimateDecay {
+    public func decay(@noescape _ closure: (make: AnimateDecay) -> Void) -> AnimateDecay {
         let make = AnimateDecay()
         closure(make: make)
         var target:NSObject = self
@@ -189,7 +189,7 @@ public extension NSObject {
             target = obj.target
         }
         make.target = target
-        let op = NSBlockOperation()
+        let op = BlockOperation()
         op.addExecutionBlock { () -> Void in
             make.applyTo(target)
         }
@@ -197,7 +197,7 @@ public extension NSObject {
         return make
     }
     
-    public func basic(@noescape closure: (make: AnimateBasic) -> Void) -> AnimateBasic {
+    public func basic(@noescape _ closure: (make: AnimateBasic) -> Void) -> AnimateBasic {
         let make = AnimateBasic()
         closure(make: make)
         var target:NSObject = self
@@ -205,7 +205,7 @@ public extension NSObject {
             target = obj.target
         }
         make.target = target
-        let op = NSBlockOperation()
+        let op = BlockOperation()
         op.addExecutionBlock { () -> Void in
             make.applyTo(target)
         }
@@ -267,8 +267,8 @@ public extension NSObject {
     
 }
 extension NSMutableArray {
-    func addBlockOperation(block:NSBlockOperation){
-        self.insertObject(block, atIndex: 0)
+    func addBlockOperation(_ block:BlockOperation){
+        self.insert(block, at: 0)
         if self.count == 1 {
             block.start()
         }
@@ -286,11 +286,11 @@ public extension NSObject {
     }
 }
 extension NSObject {
-    private func getAssociate(type:UnsafePointer<Void>)->AnyObject!{
+    private func getAssociate(_ type:UnsafePointer<Void>)->AnyObject!{
         return objc_getAssociatedObject(self, type)
     }
     
-    private func associateWith(aniamte:AnyObject,type:UnsafePointer<Void>){
+    private func associateWith(_ aniamte:AnyObject,type:UnsafePointer<Void>){
         objc_setAssociatedObject(self, type, aniamte, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
 }

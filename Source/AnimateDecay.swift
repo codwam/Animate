@@ -24,7 +24,7 @@ public class AnimateDecay: BasicProperties{
     
     public override init() {
         super.init()
-        self.type = .Decay
+        self.type = .decay
         weak var wself: AnimateDecay! = self
         applyToBlock = {
             view in
@@ -43,7 +43,7 @@ extension AnimateDecay{
     
     - parameter view: to animate
     */
-    public func applyTo(view:AnyObject){
+    public func applyTo(_ view:AnyObject){
         if animates.count == 0 {
             self.playNext()
             return
@@ -58,15 +58,16 @@ extension AnimateDecay{
                     decayAnim.deceleration = deceleration!
                 }
                 decayAnim.delegate = self
-                view.pop_addAnimation(decayAnim, forKey: decayAnim.property.name)
+                view.pop_add(decayAnim, forKey: decayAnim.property.name)
             }
         }
     }
     
     
-    public func velocity(v:AnyObject,forProperty property:String){
-        let make = POPDecayAnimation(propertyNamed: property)
-        velocity = v
-        animates.append(make)
+    public func velocity(_ v:AnyObject,forProperty property:String){
+        if let make = POPDecayAnimation(propertyNamed: property) {
+            velocity = v
+            animates.append(make)
+        }
     }
 }

@@ -25,7 +25,7 @@ public class BasicProperties: NSObject {
         didSet {
             if let value = center {
                 let anim = animator(kPOPViewCenter)
-                anim.toGenericValue(NSValue(CGPoint:value),type)
+                anim.toGenericValue(NSValue(cgPoint:value),type)
                 addAnimate(anim)
             }
         }
@@ -35,7 +35,7 @@ public class BasicProperties: NSObject {
         didSet{
             if let value = frame {
                 let anim = animator(kPOPViewFrame)
-                anim.toGenericValue(NSValue(CGRect:value),type)
+                anim.toGenericValue(NSValue(cgRect:value),type)
                 addAnimate(anim)
             }
         }
@@ -44,7 +44,7 @@ public class BasicProperties: NSObject {
     public var tintColor: UIColor!{
         didSet {
             if let value = tintColor {
-                if self.type != .Decay {
+                if self.type != .decay {
                     let anim = animator(kPOPViewTintColor)
                     anim.toValue = value
                     addAnimate(anim)
@@ -75,7 +75,7 @@ public class BasicProperties: NSObject {
                     key = kPOPViewBounds
                 }
                 let anim = animator(key)
-                anim.toGenericValue(NSValue(CGRect:value),type)
+                anim.toGenericValue(NSValue(cgRect:value),type)
                 addAnimate(anim)
             }
         }
@@ -104,7 +104,7 @@ public class BasicProperties: NSObject {
                     key = kPOPViewScaleXY
                 }
                 let anim = animator(key)
-                anim.toGenericValue(NSValue(CGSize:value),type)
+                anim.toGenericValue(NSValue(cgSize:value),type)
                 addAnimate(anim)
             }
         }
@@ -132,7 +132,7 @@ public class BasicProperties: NSObject {
                     key = kPOPViewSize
                 }
                 let anim = animator(key)
-                anim.toGenericValue(NSValue(CGSize:value),type)
+                anim.toGenericValue(NSValue(cgSize:value),type)
                 addAnimate(anim)
             }
         }
@@ -188,7 +188,7 @@ public class BasicProperties: NSObject {
         didSet {
             if let value = position {
                 let anim = animator(kPOPLayerPosition)
-                anim.toGenericValue(NSValue(CGPoint:value),type)
+                anim.toGenericValue(NSValue(cgPoint:value),type)
                 addAnimate(anim)
             }
         }
@@ -250,7 +250,7 @@ public class BasicProperties: NSObject {
         didSet {
             if let value = subscaleXY {
                 let anim = animator(kPOPLayerSubscaleXY)
-                anim.toGenericValue(NSValue(CGSize:value),type)
+                anim.toGenericValue(NSValue(cgSize:value),type)
                 addAnimate(anim)
             }
         }
@@ -270,7 +270,7 @@ public class BasicProperties: NSObject {
         didSet {
             if let value = subtranslationXY {
                 let anim = animator(kPOPLayerSubtranslationXY)
-                anim.toGenericValue(NSValue(CGSize:value),type)
+                anim.toGenericValue(NSValue(cgSize:value),type)
                 addAnimate(anim)
             }
         }
@@ -310,7 +310,7 @@ public class BasicProperties: NSObject {
         didSet {
             if let value = translationXY {
                 let anim = animator(kPOPLayerTranslationXY)
-                anim.toGenericValue(NSValue(CGSize:value),type)
+                anim.toGenericValue(NSValue(cgSize:value),type)
                 addAnimate(anim)
             }
         }
@@ -340,7 +340,7 @@ public class BasicProperties: NSObject {
         didSet {
             if let value = zPosition {
                 let anim = animator(kPOPLayerZPosition)
-                anim.toGenericValue(NSValue(CGPoint:value),type)
+                anim.toGenericValue(NSValue(cgPoint:value),type)
                 addAnimate(anim)
             }
         }
@@ -360,7 +360,7 @@ public class BasicProperties: NSObject {
         didSet {
             if let value = shadowOffset {
                 let anim = animator(kPOPLayerShadowOffset)
-                anim.toGenericValue(NSValue(CGSize:value),type)
+                anim.toGenericValue(NSValue(cgSize:value),type)
                 addAnimate(anim)
             }
         }
@@ -396,7 +396,7 @@ public class BasicProperties: NSObject {
      var animates = [AnyObject]()
      var animatesQueue = [AnyObject]()
      var delayTime: Double = 0
-     var type: AnimateType = .Spring
+     var type: AnimateType = .spring
      weak var target: NSObject!{
         didSet{
             self.associate()
@@ -404,9 +404,9 @@ public class BasicProperties: NSObject {
     }
      var doneCount: Int = 0
     
-     func addAnimate(obj:AnyObject){
+     func addAnimate(_ obj:AnyObject){
         if animating && !animateWhenSet{
-            animatesQueue.insert(obj, atIndex: 0)
+            animatesQueue.insert(obj, at: 0)
         }else{
             animates.append(obj)
             if animateWhenSet{
@@ -423,113 +423,113 @@ public class BasicProperties: NSObject {
 extension BasicProperties {
     
     // MARK: - Common
-    public func setAnimateBackgroundColor(value:UIColor){
+    public func setAnimateBackgroundColor(_ value:UIColor){
         backgroundColor = value
     }
-    public func setAnimateBounds(value:NSValue){
-        bounds = value.CGRectValue()
+    public func setAnimateBounds(_ value:NSValue){
+        bounds = value.cgRectValue()
     }
-    public func setAnimateScaleX(value:CGFloat){
+    public func setAnimateScaleX(_ value:CGFloat){
         scaleX = value
     }
-    public func setAnimateScaleXY(value:CGSize){
+    public func setAnimateScaleXY(_ value:CGSize){
         scaleXY = value
     }
-    public func setAnimateScaleY(value:CGFloat){
+    public func setAnimateScaleY(_ value:CGFloat){
         scaleY = value
     }
-    public func setAnimateSize(value:CGSize){
+    public func setAnimateSize(_ value:CGSize){
         size = value
     }
     
     // MARK: - UIView
     
-    public func setAnimateAlpha(value:CGFloat){
+    public func setAnimateAlpha(_ value:CGFloat){
         alpha = value
     }
-    public func setAnimateTintColor(value:UIColor){
+    public func setAnimateTintColor(_ value:UIColor){
         tintColor = value
     }
-    public func setAnimateFrame(value:NSValue){
-        frame = value.CGRectValue()
+    public func setAnimateFrame(_ value:NSValue){
+        frame = value.cgRectValue()
     }
-    public func setAnimateCenter(value:NSValue){
-        center = value.CGPointValue()
+    public func setAnimateCenter(_ value:NSValue){
+        center = value.cgPointValue()
     }
     // MARK: - CALayer
     
     
-    public func setAnimateCornerRadius(value:CGFloat){
+    public func setAnimateCornerRadius(_ value:CGFloat){
         cornerRadius = value
     }
-    public func setAnimateBorderWidth(value:CGFloat){
+    public func setAnimateBorderWidth(_ value:CGFloat){
         borderWidth = value
     }
-    public func setAnimateBorderColor(value:UIColor){
+    public func setAnimateBorderColor(_ value:UIColor){
         borderColor = value
     }
-    public func setAnimateOpacity(value:CGFloat){
+    public func setAnimateOpacity(_ value:CGFloat){
         opacity = value
     }
-    public func setAnimatePosition(value:CGPoint){
+    public func setAnimatePosition(_ value:CGPoint){
         position = value
     }
-    public func setAnimatePositionX(value:CGFloat){
+    public func setAnimatePositionX(_ value:CGFloat){
         positionX = value
     }
-    public func setAnimatePositionY(value:CGFloat){
+    public func setAnimatePositionY(_ value:CGFloat){
         positionY = value
     }
-    public func setAnimateRotation(value:CGFloat){
+    public func setAnimateRotation(_ value:CGFloat){
         rotation = value
     }
-    public func setAnimateRotationX(value:CGFloat){
+    public func setAnimateRotationX(_ value:CGFloat){
         rotationX = value
     }
-    public func setAnimateRotationY(value:CGFloat){
+    public func setAnimateRotationY(_ value:CGFloat){
         rotationY = value
     }
     
-    public func setAnimateSubscaleXY(value:CGSize){
+    public func setAnimateSubscaleXY(_ value:CGSize){
         subscaleXY = value
     }
-    public func setAnimateSubtranslationX(value:CGFloat){
+    public func setAnimateSubtranslationX(_ value:CGFloat){
         subtranslationX = value
     }
-    public func setAnimateSubtranslationXY(value:CGSize){
+    public func setAnimateSubtranslationXY(_ value:CGSize){
         subtranslationXY = value
     }
-    public func setAnimateSubtranslationY(value:CGFloat){
+    public func setAnimateSubtranslationY(_ value:CGFloat){
         subtranslationY = value
     }
-    public func setAnimateSubtranslationZ(value:CGFloat){
+    public func setAnimateSubtranslationZ(_ value:CGFloat){
         subtranslationZ = value
     }
-    public func setAnimateTranslationX(value:CGFloat){
+    public func setAnimateTranslationX(_ value:CGFloat){
         translationX = value
     }
-    public func setAnimateTranslationXY(value:CGSize){
+    public func setAnimateTranslationXY(_ value:CGSize){
         translationXY = value
     }
-    public func setAnimateTranslationY(value:CGFloat){
+    public func setAnimateTranslationY(_ value:CGFloat){
         translationY = value
     }
-    public func setAnimateTranslationZ(value:CGFloat){
+    public func setAnimateTranslationZ(_ value:CGFloat){
         translationZ = value
     }
-    public func setAnimateZPosition(value:CGPoint){
+    public func setAnimateZPosition(_ value:CGPoint){
         zPosition = value
     }
-    public func setAnimateShadowColor(value:UIColor){
+    public func setAnimateShadowColor(_ value:UIColor){
         shadowColor = value
     }
-    public func setAnimateShadowOffset(value:CGSize){
+    public func setAnimateShadowOffset(_ value:CGSize){
         shadowOffset = value
     }
-    public func setAnimateShadowOpacity(value:CGFloat){
+    public func setAnimateShadowOpacity(_ value:CGFloat){
         shadowOpacity = value
     }
-    public func setAnimateShadowRadius(value:CGFloat){
+    public func setAnimateShadowRadius(_ value:CGFloat){
         shadowRadius = value
     }
 }
@@ -544,13 +544,13 @@ extension BasicProperties: POPAnimationDelegate {
         }
     }
     
-    private func animator(name:String!)->POPPropertyAnimation{
+    private func animator(_ name:String!)->POPPropertyAnimation{
         var anim: POPPropertyAnimation = POPSpringAnimation(propertyNamed: name)
         switch type {
-        case .Basic:
+        case .basic:
             anim = POPBasicAnimation(propertyNamed: name)
             break
-        case .Decay:
+        case .decay:
             anim = POPDecayAnimation(propertyNamed: name)
             break
         default:
@@ -569,8 +569,8 @@ extension BasicProperties: POPAnimationDelegate {
         }else{
 //            debugPrint("delay:\(self.delayTime)", appendNewline: true)
             if self.delayTime > 0 {
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(self.delayTime
-                    * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { () -> Void in
+                DispatchQueue.main.after(when: DispatchTime.now() + Double(Int64(self.delayTime
+                    * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) { () -> Void in
                         self.play()
                 }
             }else{
@@ -583,7 +583,7 @@ extension BasicProperties: POPAnimationDelegate {
         if self.target.AnimatePopQueue.count > 0 {
             self.target.AnimatePopQueue.removeLastObject()
             if self.target.AnimatePopQueue.count > 0 {
-                if let block = self.target.AnimatePopQueue.lastObject as? NSBlockOperation {
+                if let block = self.target.AnimatePopQueue.lastObject as? BlockOperation {
                     block.start()
                 }
             }
@@ -594,17 +594,17 @@ extension BasicProperties: POPAnimationDelegate {
     
     // MARK: - POPAnimationDelegate
     
-    public func pop_animationDidStop(anim: POPAnimation!, finished: Bool) {
+    public func pop_animationDidStop(_ anim: POPAnimation!, finished: Bool) {
         self.animateStop(anim, finished: finished)
     }
     
-    func animateStop(anim: POPAnimation!, finished: Bool) {
+    func animateStop(_ anim: POPAnimation!, finished: Bool) {
         anim.delegate = nil
-        doneCount++
+        doneCount += 1
         if doneCount == self.animates.count {
             animating = false
             if animateWhenSet {
-                self.animates.removeAll(keepCapacity: true)
+                self.animates.removeAll(keepingCapacity: true)
             }
             doneCount = 0
             self.playNext()
@@ -614,11 +614,11 @@ extension BasicProperties: POPAnimationDelegate {
 }
 // MARK: - Public Function
 public extension BasicProperties {
-    public func delay(delay:Double)->BasicProperties{
+    public func delay(_ delay:Double)->BasicProperties{
         self.delayTime = delay
         return self
     }
-    public func done(done:NextAnimtionBlock){
+    public func done(_ done:NextAnimtionBlock){
         self.doneBlock = done
     }
 }
