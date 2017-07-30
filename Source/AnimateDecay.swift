@@ -9,22 +9,22 @@
 import Foundation
 import pop
 // MARK: - Decay
-public class AnimateDecay: BasicProperties{
+open class AnimateDecay: BasicProperties{
     /**
     @abstract The deceleration factor.
     @discussion Values specifies should be in the range [0, 1]. Lower values results in faster deceleration. Defaults to 0.998.
     */
-    public var deceleration: CGFloat!
+    open var deceleration: CGFloat!
     
     /**
     @abstract The current velocity value.
     @discussion Set before animation start to account for initial velocity. Expressed in change of value units per second. The only POPValueTypes supported for velocity are: kPOPValuePoint, kPOPValueInteger, kPOPValueFloat, kPOPValueRect, and kPOPValueSize.
     */
-    public var velocity: AnyObject!
+    open var velocity: AnyObject!
     
     public override init() {
         super.init()
-        self.type = .Decay
+        self.type = .decay
         weak var wself: AnimateDecay! = self
         applyToBlock = {
             view in
@@ -43,7 +43,7 @@ extension AnimateDecay{
     
     - parameter view: to animate
     */
-    public func applyTo(view:AnyObject){
+    public func applyTo(_ view:AnyObject){
         if animates.count == 0 {
             self.playNext()
             return
@@ -58,15 +58,15 @@ extension AnimateDecay{
                     decayAnim.deceleration = deceleration!
                 }
                 decayAnim.delegate = self
-                view.pop_addAnimation(decayAnim, forKey: decayAnim.property.name)
+                view.pop_add(decayAnim, forKey: decayAnim.property.name)
             }
         }
     }
     
     
-    public func velocity(v:AnyObject,forProperty property:String){
+    public func velocity(_ v:AnyObject,forProperty property:String){
         let make = POPDecayAnimation(propertyNamed: property)
         velocity = v
-        animates.append(make)
+        animates.append(make!)
     }
 }

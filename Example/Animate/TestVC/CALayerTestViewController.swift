@@ -22,22 +22,25 @@ class CALayerTestViewController: TestTemplateViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.testView.layer.spring { (make) -> Void in
-            make.backgroundColor = UIColor.greenColor()
-            make.bounds = CGRectMake(0, 0, 200, 200)
-            }.decay { (make) -> Void in
-                make.velocity(M_PI * 180, forProperty: kPOPLayerRotationY)
-            }.basic { (make) -> Void in
-                make.bounds = CGRectMake(0, 0, 100, 100)
-                make.position = CGPointMake(self.view.bounds.size.width/2 - 50, 64 + 80);
+
+        self.testView.layer.spring { (make) in
+            make.backgroundColor = UIColor.green
+            make.bounds = CGRect(x: 0, y: 0, width: 200, height: 200)
+            }
+            .decay { (make) in
+//                make.velocity(Double.pi * 180, forProperty: kPOPLayerRotationY)
+            }
+            .basic { (make) -> Void in
+                make.bounds = CGRect(x: 0, y: 0, width: 100, height: 100)
+                make.position = CGPoint(x: self.view.bounds.size.width/2 - 50, y: 64 + 80);
             }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Layer"
-        let r = Double(30.0)*M_PI
-        let rx = Double(-30.0)*M_PI
-        let ry = Double(80.0)*M_PI
+        let r = Double(30.0) * Double.pi
+        let rx = Double(-30.0) * Double.pi
+        let ry = Double(80.0) * Double.pi
         self.dataList = [
             "BackgroundColor":UIColor.green,
             "Bounds":NSValue(cgRect: CGRect(x: 0, y: 0, width: 200, height: 200)),
@@ -50,25 +53,25 @@ class CALayerTestViewController: TestTemplateViewController {
             "PositionY":160 as AnyObject,
             "Rotation":r as AnyObject,
             "RotationX":rx as AnyObject,
-            "RotationY":ry,
-            "ScaleX":2.0,
+            "RotationY":ry as AnyObject,
+            "ScaleX":2.0 as AnyObject,
             "ScaleXY":NSValue( cgSize:CGSize(width: 2.0, height: 2.0)),
-            "ScaleY":2.0,
+            "ScaleY":2.0 as AnyObject,
             "Size":NSValue(cgSize:CGSize(width: 200.0, height: 200.0)),
             "SubscaleXY":NSValue(cgSize:CGSize(width: 5.0, height: 5.0)),
-            "SubtranslationX":120,
+            "SubtranslationX":120 as AnyObject,
             "SubtranslationXY":NSValue(cgSize:CGSize(width: 120.0, height: 100.0)),
-            "SubtranslationY":100,
-            "SubtranslationZ":90,
-            "TranslationX":80,
+            "SubtranslationY":100 as AnyObject,
+            "SubtranslationZ":90 as AnyObject,
+            "TranslationX":80 as AnyObject,
             "TranslationXY":NSValue(cgSize:CGSize(width: 70, height: 90)),
-            "TranslationY":100,
-            "TranslationZ":120,
-            "ZPosition":300,
+            "TranslationY":100 as AnyObject,
+            "TranslationZ":120 as AnyObject,
+            "ZPosition":300 as AnyObject,
             "ShadowColor":UIColor.cyan,
             "ShadowOffset":NSValue(cgSize:CGSize(width: 20, height: 10)),
-            "ShadowOpacity":0.7,
-            "ShadowRadius":40
+            "ShadowOpacity":0.7 as AnyObject,
+            "ShadowRadius":40 as AnyObject
         ]
         
     }

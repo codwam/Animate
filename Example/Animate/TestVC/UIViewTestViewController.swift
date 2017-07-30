@@ -24,13 +24,14 @@ class UIViewTestViewController: TestTemplateViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
         self.testView
-                .spring { (make) -> Void in
+                .spring { (make) in
                     make.springBounciness = 20
                     make.springSpeed = 20
-                    make.frame = CGRectMake(120, 150, 200, 400)
-            }.delay(0.5).decay { (make) -> Void in
-                make.velocity(UIColor.greenColor(), forProperty: kPOPViewBackgroundColor)
+                    make.frame = CGRect(x: 120, y: 150, width: 200, height: 400)
+            }.delay(0.5).decay { (make) in
+                make.velocity(UIColor.green, forProperty: kPOPViewBackgroundColor)
             }.delay(0.5).basic { (make) -> Void in
                 make.frame = CGRect(x: self.view.bounds.size.width/2 - 50, y: 64 + 80, width: 100, height: 100)
             }

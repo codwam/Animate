@@ -9,21 +9,21 @@
 import Foundation
 import pop
 
-public class AnimateBasic: BasicProperties{
+open class AnimateBasic: BasicProperties{
     /**
     @abstract The duration in seconds. Defaults to 0.4.
     */
-    public var duration: CFTimeInterval!
+    open var duration: CFTimeInterval!
     
     /**
     @abstract A timing function defining the pacing of the animation. Defaults to nil indicating pacing according to kCAMediaTimingFunctionDefault.
     */
-    public var timingFunction: CAMediaTimingFunction!
+    open var timingFunction: CAMediaTimingFunction!
     
     
     public override init() {
         super.init()
-        self.type = .Basic
+        self.type = .basic
         weak var wself: AnimateBasic! = self
         applyToBlock = {
             view in
@@ -46,7 +46,7 @@ extension AnimateBasic {
     
     - parameter view: to animate
     */
-    public func applyTo(view:AnyObject){
+    public func applyTo(_ view:AnyObject){
         
         if animates.count == 0 {
             self.playNext()
@@ -62,7 +62,7 @@ extension AnimateBasic {
                     basicAnim.timingFunction = timingFunction!
                 }
                 basicAnim.delegate = self
-                view.pop_addAnimation(basicAnim, forKey: basicAnim.property.name)
+                view.pop_add(basicAnim, forKey: basicAnim.property.name)
             }
         }
     }
