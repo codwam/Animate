@@ -8,7 +8,7 @@ inhibit_all_warnings!
 
 target 'Animate_Example' do
 
-pod 'Animate', :path => "../"
+    pod 'Animate', :path => "../"
 
 end
 

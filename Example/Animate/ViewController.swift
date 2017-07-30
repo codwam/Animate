@@ -13,22 +13,22 @@ import Animate
 
 
 class ViewController: UIViewController {
-    private var _uiviewTestVC: UIViewTestViewController!
-    private var _calayerTestVC: CALayerTestViewController!
-    private var _cashapLayerTestVC: CAShapeLayerTestViewController!
-    private var _nslayoutConstraintTestVC: NSLayoutConstraintTestViewController!
-    private var _uiscrollViewTestVC: UIScrollViewTestViewController!
-    private var _uitableViewTestVC: UITableViewTestViewController!
-    private var _uicollectionViewTestVC: UICollectionViewTestViewController!
-    private var _uinavigationBarTestVC: UINavigationBarTestViewController!
-    private var _uitoolbarTestVC: UIToolbarTestViewController!
-    private var _uitabBarTestVC: UITabBarTestViewController!
-    private var _uilabelTestVC: UILabelTestViewController!
+    fileprivate var _uiviewTestVC: UIViewTestViewController!
+    fileprivate var _calayerTestVC: CALayerTestViewController!
+    fileprivate var _cashapLayerTestVC: CAShapeLayerTestViewController!
+    fileprivate var _nslayoutConstraintTestVC: NSLayoutConstraintTestViewController!
+    fileprivate var _uiscrollViewTestVC: UIScrollViewTestViewController!
+    fileprivate var _uitableViewTestVC: UITableViewTestViewController!
+    fileprivate var _uicollectionViewTestVC: UICollectionViewTestViewController!
+    fileprivate var _uinavigationBarTestVC: UINavigationBarTestViewController!
+    fileprivate var _uitoolbarTestVC: UIToolbarTestViewController!
+    fileprivate var _uitabBarTestVC: UITabBarTestViewController!
+    fileprivate var _uilabelTestVC: UILabelTestViewController!
     
-    private var _vcs: [UIViewController]!
+    fileprivate var _vcs: [UIViewController]!
     
-    private var _tableView: UITableView!
-    private var dataList = ["UIView","CALayer","CAShapeLayer","NSLayoutConstraint","UIScrollView","UITableView","UICollectionView","UINavigationBar","UIToolbar","UITabBar","UILabel"];
+    fileprivate var _tableView: UITableView!
+    fileprivate var dataList = ["UIView","CALayer","CAShapeLayer","NSLayoutConstraint","UIScrollView","UITableView","UICollectionView","UINavigationBar","UIToolbar","UITabBar","UILabel"];
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.title = "Animate"
     }
@@ -49,11 +49,11 @@ class ViewController: UIViewController {
 extension ViewController {
     var tableView: UITableView {
         if ??_tableView {
-            _tableView = UITableView(frame: self.view.bounds, style: UITableViewStyle.Plain)
+            _tableView = UITableView(frame: self.view.bounds, style: UITableViewStyle.plain)
             _tableView.delegate = self
             _tableView.dataSource = self
             _tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
-            _tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+            _tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         }
         return _tableView
     }
@@ -148,30 +148,30 @@ extension ViewController: UITableViewDataSource,UITableViewDelegate{
     
     //MARK: UITableViewDataSource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dataList.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell! = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) 
         if ??cell {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: "cell")
+            cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
         }
         configureCell(cell, forRowAtIndexPath: indexPath)
         return cell
     }
     
-    func configureCell(cell: UITableViewCell!, forRowAtIndexPath: NSIndexPath) {
+    func configureCell(_ cell: UITableViewCell!, forRowAtIndexPath: IndexPath) {
         cell.textLabel?.text = dataList[forRowAtIndexPath.row]
     }
     
     //MARK: UITableViewDelegate
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.vcs[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }

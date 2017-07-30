@@ -10,17 +10,17 @@ import UIKit
 import pop
 import Animate
 class CALayerTestViewController: TestTemplateViewController {
-    private var currentProperty: Int = 0 {
+    fileprivate var currentProperty: Int = 0 {
         didSet{
             animateCombine()
         }
     }
-    private var currentStyle: Int = 0 {
+    fileprivate var currentStyle: Int = 0 {
         didSet{
             animateCombine()
         }
     }
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.testView.layer.spring { (make) -> Void in
             make.backgroundColor = UIColor.greenColor()
@@ -39,34 +39,34 @@ class CALayerTestViewController: TestTemplateViewController {
         let rx = Double(-30.0)*M_PI
         let ry = Double(80.0)*M_PI
         self.dataList = [
-            "BackgroundColor":UIColor.greenColor(),
-            "Bounds":NSValue(CGRect: CGRectMake(0, 0, 200, 200)),
-            "CornerRadius":50,
-            "BorderWidth":6.0,
-            "BorderColor":UIColor.orangeColor(),
-            "Opacity":0.1,
-            "Position":NSValue(CGPoint:CGPointMake(200, 100)),
-            "PositionX":150,
-            "PositionY":160,
-            "Rotation":r,
-            "RotationX":rx,
+            "BackgroundColor":UIColor.green,
+            "Bounds":NSValue(cgRect: CGRect(x: 0, y: 0, width: 200, height: 200)),
+            "CornerRadius":50 as AnyObject,
+            "BorderWidth":6.0 as AnyObject,
+            "BorderColor":UIColor.orange,
+            "Opacity":0.1 as AnyObject,
+            "Position":NSValue(cgPoint:CGPoint(x: 200, y: 100)),
+            "PositionX":150 as AnyObject,
+            "PositionY":160 as AnyObject,
+            "Rotation":r as AnyObject,
+            "RotationX":rx as AnyObject,
             "RotationY":ry,
             "ScaleX":2.0,
-            "ScaleXY":NSValue( CGSize:CGSizeMake(2.0, 2.0)),
+            "ScaleXY":NSValue( cgSize:CGSize(width: 2.0, height: 2.0)),
             "ScaleY":2.0,
-            "Size":NSValue(CGSize:CGSizeMake(200.0, 200.0)),
-            "SubscaleXY":NSValue(CGSize:CGSizeMake(5.0, 5.0)),
+            "Size":NSValue(cgSize:CGSize(width: 200.0, height: 200.0)),
+            "SubscaleXY":NSValue(cgSize:CGSize(width: 5.0, height: 5.0)),
             "SubtranslationX":120,
-            "SubtranslationXY":NSValue(CGSize:CGSizeMake(120.0, 100.0)),
+            "SubtranslationXY":NSValue(cgSize:CGSize(width: 120.0, height: 100.0)),
             "SubtranslationY":100,
             "SubtranslationZ":90,
             "TranslationX":80,
-            "TranslationXY":NSValue(CGSize:CGSizeMake(70, 90)),
+            "TranslationXY":NSValue(cgSize:CGSize(width: 70, height: 90)),
             "TranslationY":100,
             "TranslationZ":120,
             "ZPosition":300,
-            "ShadowColor":UIColor.cyanColor(),
-            "ShadowOffset":NSValue(CGSize:CGSizeMake(20, 10)),
+            "ShadowColor":UIColor.cyan,
+            "ShadowOffset":NSValue(cgSize:CGSize(width: 20, height: 10)),
             "ShadowOpacity":0.7,
             "ShadowRadius":40
         ]
@@ -80,16 +80,16 @@ class CALayerTestViewController: TestTemplateViewController {
     
 
     func animateCombine(){
-        UIView.animateWithDuration(0.2, animations: { () -> Void in
+        UIView.animate(withDuration: 0.2, animations: { () -> Void in
             self.testView.alpha = 0
-            }) { (b) -> Void in
+            }, completion: { (b) -> Void in
                 if b {
                     self.testView.removeFromSuperview()
                     self.testView = nil
                     self.view.addSubview(self.testView)
                     self.Animate()
                 }
-        }
+        }) 
     }
     
     func Animate(){
@@ -103,7 +103,7 @@ class CALayerTestViewController: TestTemplateViewController {
         var value: AnyObject! = Array(dataList.values)[currentProperty]
         let key = Array(dataList.keys)[currentProperty]
         if currentStyle == 1 && key == "Alpha" {
-            value = -1.8
+            value = -1.8 as AnyObject
         }
         animator.setValue(value, forKeyPath: "Animate"+key)
     }
@@ -111,11 +111,11 @@ class CALayerTestViewController: TestTemplateViewController {
 }
 extension CALayerTestViewController {
     
-    override func changeSegment(sender: UISegmentedControl) {
+    override func changeSegment(_ sender: UISegmentedControl) {
         currentStyle = sender.selectedSegmentIndex
     }
     
-    override func changeProperty(row: Int) {
+    override func changeProperty(_ row: Int) {
         currentProperty = row
     }
 }

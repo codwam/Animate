@@ -11,18 +11,18 @@ import pop
 import Animate
 class UIViewTestViewController: TestTemplateViewController {
 
-    private var currentProperty: Int = 0 {
+    fileprivate var currentProperty: Int = 0 {
         didSet{
             animateCombine()
         }
     }
-    private var currentStyle: Int = 0 {
+    fileprivate var currentStyle: Int = 0 {
         didSet{
             animateCombine()
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.testView
                 .spring { (make) -> Void in
@@ -32,7 +32,7 @@ class UIViewTestViewController: TestTemplateViewController {
             }.delay(0.5).decay { (make) -> Void in
                 make.velocity(UIColor.greenColor(), forProperty: kPOPViewBackgroundColor)
             }.delay(0.5).basic { (make) -> Void in
-                make.frame = CGRectMake(self.view.bounds.size.width/2 - 50, 64 + 80, 100, 100)
+                make.frame = CGRect(x: self.view.bounds.size.width/2 - 50, y: 64 + 80, width: 100, height: 100)
             }
 
     }
@@ -40,27 +40,27 @@ class UIViewTestViewController: TestTemplateViewController {
         super.viewDidLoad()
         self.navigationItem.title = "View"
         self.dataList = [
-            "Alpha":0.1,
-            "BackgroundColor":UIColor.greenColor(),
-            "Bounds":NSValue(CGRect: CGRectMake(0, 0, 200, 200)),
-            "Center":NSValue(CGPoint: CGPointMake(60, 120)),
-            "Frame":NSValue(CGRect: CGRectMake(60, 100, 80, 200)),
-            "ScaleX":1.2,
-            "ScaleXY":NSValue(CGSize:CGSizeMake(0.5, 1.5)),
-            "ScaleY":1.7,
-            "Size":NSValue(CGSize:CGSizeMake(80, 80)),
-            "TintColor":UIColor.redColor()]
+            "Alpha":0.1 as AnyObject,
+            "BackgroundColor":UIColor.green,
+            "Bounds":NSValue(cgRect: CGRect(x: 0, y: 0, width: 200, height: 200)),
+            "Center":NSValue(cgPoint: CGPoint(x: 60, y: 120)),
+            "Frame":NSValue(cgRect: CGRect(x: 60, y: 100, width: 80, height: 200)),
+            "ScaleX":1.2 as AnyObject,
+            "ScaleXY":NSValue(cgSize:CGSize(width: 0.5, height: 1.5)),
+            "ScaleY":1.7 as AnyObject,
+            "Size":NSValue(cgSize:CGSize(width: 80, height: 80)),
+            "TintColor":UIColor.red]
         self.velocityList = [
-            "Alpha":-1.8,
-            "BackgroundColor":UIColor.yellowColor(),
-            "Bounds":NSValue(CGRect: CGRectMake(0, 0, 500, 200)),
-            "Center":NSValue(CGPoint: CGPointMake(100, 120)),
-            "Frame":NSValue(CGRect: CGRectMake(20, 200, 10, 200)),
-            "ScaleX":1.2,
-            "ScaleXY":NSValue(CGSize:CGSizeMake(1.5, 2.5)),
-            "ScaleY":1.7,
-            "Size":NSValue(CGSize:CGSizeMake(100, 80)),
-            "TintColor":UIColor.cyanColor()
+            "Alpha":-1.8 as AnyObject,
+            "BackgroundColor":UIColor.yellow,
+            "Bounds":NSValue(cgRect: CGRect(x: 0, y: 0, width: 500, height: 200)),
+            "Center":NSValue(cgPoint: CGPoint(x: 100, y: 120)),
+            "Frame":NSValue(cgRect: CGRect(x: 20, y: 200, width: 10, height: 200)),
+            "ScaleX":1.2 as AnyObject,
+            "ScaleXY":NSValue(cgSize:CGSize(width: 1.5, height: 2.5)),
+            "ScaleY":1.7 as AnyObject,
+            "Size":NSValue(cgSize:CGSize(width: 100, height: 80)),
+            "TintColor":UIColor.cyan
         ]
         
         
@@ -73,16 +73,16 @@ class UIViewTestViewController: TestTemplateViewController {
     
     
     func animateCombine(){
-        UIView.animateWithDuration(0.2, animations: { () -> Void in
+        UIView.animate(withDuration: 0.2, animations: { () -> Void in
             self.testView.alpha = 0
-        }) { (b) -> Void in
+        }, completion: { (b) -> Void in
             if b {
                 self.testView.removeFromSuperview()
                 self.testView = nil
                 self.view.addSubview(self.testView)
                 self.Animate()
             }
-        }
+        }) 
     }
     
     func Animate(){
@@ -105,11 +105,11 @@ class UIViewTestViewController: TestTemplateViewController {
 }
 extension UIViewTestViewController {
     
-    override func changeSegment(sender: UISegmentedControl) {
+    override func changeSegment(_ sender: UISegmentedControl) {
         currentStyle = sender.selectedSegmentIndex
     }
     
-    override func changeProperty(row: Int) {
+    override func changeProperty(_ row: Int) {
         currentProperty = row
     }
 }
